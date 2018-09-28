@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+{% block title %} | Result{% endblock %}
+{% block content %}
+    <br>
+    <div>
+    <p class="title">
+    {{ article['title'] }}
+    </p>
+    <p class="author">
+    By {{ article['author'] }} <br>  
+    From {{ article['source'] }}
+    </p>
+    <div class="score-block">
+	    <p>This article has a score of {{ score['number'] }}, which means it is {{ score['text'] }}.</p>
+	    <div class="explanation">
+		    <span class="objective">Text with this highlighting represents <span style="font-weight:bold;">objective</span> words and style</span><br>
+		    <span class="opinion">Text with this highlighting represents <span style="font-weight:bold;">opinionated</span> words and style</span>
+   		</div>
+	</div>
+	{{ article['body'] }}
+    </div>
+{% endblock %}
