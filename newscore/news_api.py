@@ -55,7 +55,10 @@ class NewsAPI (object):
         self.api_instance = aylien_news_api.DefaultApi()
 
     def __call__(self, url):
-        return Article(self._get_article_2(url))
+        retval = self._get_article_2(url)
+        if retval is None:
+            return retval
+        return Article(retval)
 
     def get_an_article(self, domain):
         params = {'language':['en'], 'per_page':1, 'source_domain':[domain]}
