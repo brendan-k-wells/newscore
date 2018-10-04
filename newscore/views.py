@@ -25,22 +25,26 @@ def index():
 
 @app.route('/go')
 def go():
-    url = request.args.get('url')
-    article = api(url)
+    try:
+        url = request.args.get('url')
+        article = api(url)
+        assert article is not None
 
-    article_dict = article.to_dict()
-    article_dict['url'] = url
-    
-    score_val = score_gen.score(article_dict['body'])
-    score_text = score_gen.score_to_text(score_val)
-    score_words = score_gen.words(article_dict['body'])
-    
+        article_dict = article.to_dict()
+        article_dict['url'] = url
+        
+        score_val = score_gen.score(article_dict['body'])
+        score_text = score_gen.score_to_text(score_val)
+        score_words = score_gen.words(article_dict['body'])
+        
 
-    score = {'number': '{:.2f}'.format(score_val), 'text': score_text}
+        score = {'number': '{:.2f}'.format(score_val), 'text': score_text}
 
-    article_dict['body'] = _process_body(article_dict['body'], score_words)
+        article_dict['body'] = _process_body(article_dict['body'], score_words)
 
-    return render_template('go.html', article=article_dict, score=score, placeholder_text = url)
+        return render_template('go.html', article=article_dict, score=score, placeholder_text = url)
+    except: 
+        return render_template('error.html', url=url)
 
 
 from spacy.lang.en import English
