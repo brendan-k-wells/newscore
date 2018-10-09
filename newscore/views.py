@@ -5,6 +5,8 @@ from .news_api import NewsAPI
 from .score import Score
 from flask import Markup
 
+import html
+
 
 api = NewsAPI()
 score_gen = Score()
@@ -13,10 +15,15 @@ score_gen = Score()
 @app.route('/')
 @app.route('/index')
 def index():
+    def linkify(ex_dict):
+        ex_dict['link'] = "http://newscore.ink/go?url={}&push=".format(html.escape(ex_dict['url']))
     example = [None]*3
     example[0] = api.get_an_article('washingtonpost.com').to_dict()
+    linkify(example[0])
     example[1] = api.get_an_article('chicagotribune.com').to_dict()
+    linkify(example[1])
     example[2] = api.get_an_article('eastbaytimes.com').to_dict()
+    linkify(example[2])
     print (example)
 
 

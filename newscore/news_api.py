@@ -7,6 +7,7 @@ from aylien_news_api.rest import ApiException
 import sys
 from flask import Markup
 
+import html
 
 # Configure API key authorization: app_id
 aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = 'c0497298'
