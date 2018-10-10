@@ -6,6 +6,7 @@ from .score import Score
 from flask import Markup
 
 import html
+import datetime
 
 
 api = NewsAPI()
@@ -17,14 +18,19 @@ score_gen = Score()
 def index():
     def linkify(ex_dict):
         ex_dict['link'] = "http://newscore.ink/go?url={}&push=".format(html.escape(ex_dict['url']))
-    example = [None]*3
-    example[0] = api.get_an_article('washingtonpost.com').to_dict()
+    example = [None]*7
+    example[0], example[1] = list(map(lambda x: x.to_dict(),api.get_an_article_ap()))
     linkify(example[0])
-    example[1] = api.get_an_article('chicagotribune.com').to_dict()
     linkify(example[1])
-    example[2] = api.get_an_article('eastbaytimes.com').to_dict()
+    example[2], example[3] = list(map(lambda x: x.to_dict(),api.get_an_article_opinion()))
     linkify(example[2])
-    print (example)
+    linkify(example[3])
+    example[4] = api.get_an_article_domain('washingtonpost.com').to_dict()
+    linkify(example[4])
+    example[5] = api.get_an_article_domain('chicagotribune.com').to_dict()
+    linkify(example[5])
+    example[6] = api.get_an_article_domain('eastbaytimes.com').to_dict()
+    linkify(example[6])
 
 
     return render_template('master.html', placeholder_text='Enter a URL', example=example)
@@ -34,6 +40,8 @@ def index():
 def go():
     try:
         url = request.args.get('url')
+        with open('logfile.txt', 'a') as logfile:
+            logfile.write('{}:{}\n'.format(datetime.datetime.now(), url))
         article = api(url)
         assert article is not None
 
@@ -48,6 +56,8 @@ def go():
         score = {'number': '{:.2f}'.format(score_val), 'text': score_text}
 
         article_dict['body'] = _process_body(article_dict['body'], score_words)
+        with open('logfile.txt', 'a') as logfile:
+            logfile.write('\t{}:{}\n'.format(datetime.datetime.now(), score['number']))
 
         return render_template('go.html', article=article_dict, score=score, placeholder_text = url)
     except: 

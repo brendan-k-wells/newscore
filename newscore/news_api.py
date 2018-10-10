@@ -61,9 +61,19 @@ class NewsAPI (object):
             return retval
         return Article(retval)
 
-    def get_an_article(self, domain):
-        params = {'language':['en'], 'per_page':1, 'source_domain':[domain]}
+    def get_an_article_domain(self, domain, n=1):
+        params = {'language':['en'], 'per_page':n, 'source_domain':[domain]}
+        return self._get_an_article(params, n)
 
+    def get_an_article_ap(self, n=2):
+        params = {'language':['en'], 'per_page':n, 'author_name':'Associated Press'}
+        return self._get_an_article(params, n)
+
+    def get_an_article_opinion(self, n=2):
+        params = {'language':['en'], 'per_page':n, 'title':'opinion'}
+        return self._get_an_article(params, n)
+
+    def _get_an_article(self, params, n):
         the_story = None
         
         while True:
@@ -82,7 +92,10 @@ class NewsAPI (object):
         stories = response.stories
         assert len(stories) > 0
 
-        return Article(stories[0])
+        if n == 1:
+            return Article(stories[0])
+        if n > 1:
+            return map(Article, stories)
 
 
     @staticmethod
