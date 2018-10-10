@@ -10,3 +10,13 @@
 2018-10-10 06:57:59.532043:https://www.eastbaytimes.com/2018/10/09/antioch-police-call-on-public-to-help-find-missing-siblings/
 2018-10-10 06:58:12.871424:https://www.washingtonpost.com/world/europe/suspect-in-bulgarian-journalist-slaying-arrested-in-germany/2018/10/10/11d6157c-cc57-11e8-ad0a-0e01efba3cc1_story.html
 2018-10-10 06:58:26.920488:http://www.chicagotribune.com/sns-201809181126--tms--hscopebctnzz-b20181010-20181010-story.html
+2018-10-10 07:14:09.273200:https://www.washingtonpost.com/local/public-safety/police-give-alliterative-description-of-grocery-store-glute-grabber/2018/10/10/3b39a7d0-cc57-11e8-920f-dd52e1ae4570_story.html
+	2018-10-10 07:14:11.011038:63.44
+2018-10-10 07:25:16.697793:https://www.washingtonpost.com/politics/fact-checker/tom-cottons-fact-free-theory-on-the-leaks-of-fords-letter/2018/10/10/4a545f25-8a85-4633-adec-425a6951c075_story.html
+	2018-10-10 07:25:18.962426:63.37
+2018-10-10 07:26:14.446831:http://www.chicagotribune.com/sns-201809181126--tms--hscopebctnzz-b20181010-20181010-story.html
+	2018-10-10 07:26:16.820317:58.20
+2018-10-10 07:27:44.776077:https://www.eastbaytimes.com/2018/10/09/antioch-police-call-on-public-to-help-find-missing-siblings/
+	2018-10-10 07:27:46.777579:59.74
+2018-10-10 16:49:33.595054:https://www.eastbaytimes.com/2018/10/10/letter-jobs-dont-pay-enough-to-meet-basic-needs/
+	2018-10-10 16:49:34.941419:71.18

@@ -1,5 +1,6 @@
 from flask import render_template
 from flask import request
+from flask import redirect
 from newscore import app
 from .news_api import NewsAPI
 from .score import Score
@@ -25,7 +26,6 @@ def index():
     linkify(example[1])
     example[2] = api.get_an_article('eastbaytimes.com').to_dict()
     linkify(example[2])
-    print (example)
 
 
     return render_template('master.html', placeholder_text='Enter a URL', example=example)
@@ -74,3 +74,10 @@ def _process_body(body, words):
             cur_text = cur_text.replace(cur_text.strip(), '<span class="opinion">{}</span>'.format(cur_text.strip()))
         cur_str += cur_text
     return Markup(r'<p>'+r'<p>'.join(cur_str.split('\n')))
+
+
+@app.route('/slides')
+def slides():
+    return redirect('https://docs.google.com/presentation/d/16SxeUIefs-PodYLEoWbFjBVi0TdGqYTAN9vWijedVSw', code=302)
+
+
