@@ -6,6 +6,7 @@ from .score import Score
 from flask import Markup
 
 import html
+import datetime
 
 
 api = NewsAPI()
@@ -34,6 +35,8 @@ def index():
 def go():
     try:
         url = request.args.get('url')
+        with open('logfile.txt', 'a') as logfile:
+            logfile.write('{}:{}\n'.format(datetime.datetime.now(), url))
         article = api(url)
         assert article is not None
 
@@ -48,6 +51,8 @@ def go():
         score = {'number': '{:.2f}'.format(score_val), 'text': score_text}
 
         article_dict['body'] = _process_body(article_dict['body'], score_words)
+        with open('logfile.txt', 'a') as logfile:
+            logfile.write('\t{}:{}\n'.format(datetime.datetime.now(), score['number']))
 
         return render_template('go.html', article=article_dict, score=score, placeholder_text = url)
     except: 
