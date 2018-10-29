@@ -56,7 +56,7 @@ def go():
         score_words = score_gen.words(article_dict['body'])
         
 
-        score = {'number': '{:.2f}'.format(score_val), 'text': score_text}
+        score = {'number': '{:.0f}/100'.format(score_val), 'text': score_text}
 
         article_dict['body'] = _process_body(article_dict['body'], score_words)
         with open('urlfile.txt', 'a') as logfile:
