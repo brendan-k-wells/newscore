@@ -10,11 +10,13 @@ from flask import Markup
 import html
 
 # Configure API key authorization: app_id
-aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = 'c0497298'
-#aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = '0a282753'
+aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = '2f5e48ee'
+#2: aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = 'c0497298'
+#1: aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-ID'] = '0a282753'
 # Configure API key authorization: app_key
-aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '7db4960c3a727df2249502f592a17167'
-#aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = 'dcb76ec967d97f25bd7e54e1a7ad2502'
+aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = 'e6f74181cb52f4eeb81f8b7ff79255b4'
+#2: aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = '7db4960c3a727df2249502f592a17167'
+#1: aylien_news_api.configuration.api_key['X-AYLIEN-NewsAPI-Application-Key'] = 'dcb76ec967d97f25bd7e54e1a7ad2502'
 
 class Article(object):
     def __init__(self, article_response):

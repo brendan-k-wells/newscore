@@ -97,7 +97,7 @@ class Score (object):
         elif measure < 40:
             return 'likely opinion'
         elif measure < 60:
-            return 'some opinion'
+            return 'somewhat opinion'
         elif measure < 80:
             return 'mostly objective'
         else:

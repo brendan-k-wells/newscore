@@ -10,6 +10,14 @@ import html
 import datetime
 
 
+
+import logging
+@app.before_first_request
+def setup_logging():
+    if not app.debug:
+        app.logger.addHandler(logging.StreamHandler())
+        app.logger.setLevel(logging.INFO)
+
 api = NewsAPI()
 score_gen = Score()
 
@@ -35,8 +43,8 @@ def index():
 def go():
     try:
         url = request.args.get('url')
-        with open('logfile.txt', 'a') as logfile:
-            logfile.write('{}:{}\n'.format(datetime.datetime.now(), url))
+        with open('urlfile.txt', 'a') as logfile:
+            logfile.write('{}: {}\n'.format(datetime.datetime.now(), url))
         article = api(url)
         assert article is not None
 
@@ -51,8 +59,8 @@ def go():
         score = {'number': '{:.2f}'.format(score_val), 'text': score_text}
 
         article_dict['body'] = _process_body(article_dict['body'], score_words)
-        with open('logfile.txt', 'a') as logfile:
-            logfile.write('\t{}:{}\n'.format(datetime.datetime.now(), score['number']))
+        with open('urlfile.txt', 'a') as logfile:
+            logfile.write('\t{}: {}\n'.format(datetime.datetime.now(), score['number']))
 
         return render_template('go.html', article=article_dict, score=score, placeholder_text = url)
     except: 
@@ -79,5 +87,3 @@ def _process_body(body, words):
 @app.route('/slides')
 def slides():
     return redirect('https://docs.google.com/presentation/d/16SxeUIefs-PodYLEoWbFjBVi0TdGqYTAN9vWijedVSw', code=302)
-
-
